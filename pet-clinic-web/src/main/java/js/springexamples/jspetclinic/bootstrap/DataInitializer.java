@@ -1,8 +1,10 @@
 package js.springexamples.jspetclinic.bootstrap;
 
 import js.springexamples.jspetclinic.model.Owner;
+import js.springexamples.jspetclinic.model.PetType;
 import js.springexamples.jspetclinic.model.Vet;
 import js.springexamples.jspetclinic.services.OwnerService;
+import js.springexamples.jspetclinic.services.PetTypeService;
 import js.springexamples.jspetclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -12,14 +14,24 @@ public class DataInitializer implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final VetService vetService;
+    private final PetTypeService petTypeService;
 
-    public DataInitializer(OwnerService ownerService, VetService vetService){
+    public DataInitializer(OwnerService ownerService, VetService vetService, PetTypeService petTypeService){
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.petTypeService = petTypeService;
     }
 
     @Override
     public void run(String... args) throws Exception {
+
+        PetType cat = new PetType();
+        cat.setName("Cat");
+        PetType savedCatPetType = petTypeService.save(cat);
+
+        PetType dog = new PetType();
+        dog.setName("Dog");
+        PetType savedDogPetType = petTypeService.save(dog);
 
         Owner owner1 = new Owner();
         owner1.setFirstName("Michael");
