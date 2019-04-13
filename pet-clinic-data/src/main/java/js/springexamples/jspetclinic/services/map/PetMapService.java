@@ -2,9 +2,11 @@ package js.springexamples.jspetclinic.services.map;
 
 import js.springexamples.jspetclinic.model.Pet;
 import js.springexamples.jspetclinic.services.PetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class PetMapService extends AbstractMapService<Pet, Long> implements PetService {
     @Override
     public Set<Pet> findAll() {
